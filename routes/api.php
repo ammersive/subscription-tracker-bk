@@ -2,7 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Subscriptions;
+// use App\Http\Controllers\Subscriptions;
+use App\Http\Controllers\API\Subscriptions;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,4 +22,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/subscriptions', [Subscriptions::class, "index"]);
 
-Route::get('/subscriptions/{id}', [Subscriptions::class, "index"]);
+Route::get('/subscriptions/{id}', [Subscriptions::class, "show"]);

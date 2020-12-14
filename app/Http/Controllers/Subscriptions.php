@@ -7,19 +7,19 @@ use App\Models\Subscription;
 
 class Subscriptions extends Controller
 {
-    public function index()
-    {
-        return view("subscriptions", [
-            "subscriptions" => Subscription::all(),   
-        ]);
-    }
+    // public function index()
+    // {
+    //     return view("subscriptions", [
+    //         "subscriptions" => Subscription::all(),   
+    //     ]);
+    // }
 
-    public function show($id)
-    {
-        $subscription = Subscription::find($id);
+    // public function show($id)
+    // {
+    //     $subscription = Subscription::find($id);
 
-        return view("subscription", [
-            "subscription" => $subscription
-        ]);
-    }
+    //     return view("subscription", [
+    //         "subscription" => $subscription
+    //     ]);
+    // }
 }

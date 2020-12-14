@@ -5,6 +5,9 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Subscription;
+use App\Http\Requests\API\SubscriptionRequest;
+use App\Http\Resources\API\SubscriptionResource;
+
 
 class Subscriptions extends Controller
 {
@@ -15,9 +18,7 @@ class Subscriptions extends Controller
      */
     public function index()
     {
-        return view("subscriptions", [
-            "subscriptions" => Subscription::all(),   
-        ]);
+        return Subscription::all();   
     }   
 
     /**
@@ -39,11 +40,7 @@ class Subscriptions extends Controller
      */
     public function show($id)
     {
-        $subscription = Subscription::find($id);
-
-        return view("subscription", [
-            "subscription" => $subscription
-        ]);
+        return Subscription::find($id);
     }
 
     /**
