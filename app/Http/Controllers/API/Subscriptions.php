@@ -18,7 +18,8 @@ class Subscriptions extends Controller
      */
     public function index()
     {
-        return Subscription::all();   
+        // return Subscription::all();  
+        return SubscriptionResource::collection(Subscription::all());  
     }   
 
     /**
@@ -38,9 +39,10 @@ class Subscriptions extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Subscription $subscription)
     {
-        return Subscription::find($id);
+        return new SubscriptionResource($subscription);
+        // use route model binding to use Subscriptions Resource?
     }
 
     /**
