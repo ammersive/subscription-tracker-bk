@@ -23,3 +23,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/subscriptions', [Subscriptions::class, "index"]);
 
 Route::get('/subscriptions/{subscription}', [Subscriptions::class, "show"]);
+
+//

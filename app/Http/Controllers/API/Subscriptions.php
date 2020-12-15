@@ -42,7 +42,7 @@ class Subscriptions extends Controller
     public function show(Subscription $subscription)
     {
         return new SubscriptionResource($subscription);
-        // use route model binding to use Subscriptions Resource?
+        
     }
 
     /**
