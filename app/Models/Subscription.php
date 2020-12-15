@@ -22,45 +22,46 @@ class Subscription extends Model
         return $this;
     }
 
-    // Take user input of paymentDate (DD) and return date string formatted YYYYMMDD 
-    public function paymentDaysToDate()
+    // Take payment_date (stored as an int) and return date string, formatted as YYYYMMDD 
+    public function paymentDayToDate()
     {   
-        // Get current year and month as "YYYYMM"     
-        $currentYearMonth = date("Ym");
-        // Get current day: e.g. "20" or "2"  
-        $currentDay = date('d');
-        // Get payment date for object instance
-        $paymentDate = $this->payment_date;
+        // Current values from date object           
+        $currentYear = date("Y"); 
+        $currentMonth = date("m");
+        $currentDay = date("d");
 
-        // if current month is December AND currentDay is later than payment date
-        if ((date("m") === "12") && ((int)$currentDay > $paymentDate)) {
-            // Convert year to int, add 1, convert back to string
-            $nextYear = strval(((int)date("Y")) + 1);
-            // If month paymentDate is a single character, add 0 padding
-            if (strlen($paymentDate) === 1) {
-                $paymentDate = str_pad($paymentDate, 2, "0", STR_PAD_LEFT);
-            }
-            // Concatenate new year value, January value, and paymentDate
-            return $nextYear . "01" . $paymentDate;
-        }
-        // if currentDay is later than payment date (but it's not December), increase month by 1
-        else if ((int)$currentDay > $paymentDate) {
-            $year = date("Y");
-            // $nextMonth = strval(((int)date("m")) + 1);
-            $nextMonth = ((int)date("m")) + 1;
+        // Values to return  
+        $year = "";
+        $month = "";
+        $day = $this->payment_date; // int
 
-            // If month and/or paymentDate are a single character, add 0 padding
-            if (strlen($nextMonth) === 1) {
-                $nextMonth = str_pad($nextMonth, 2, "0", STR_PAD_LEFT);
-            }
-            if (strlen($paymentDate) === 1) {
-                $paymentDate = str_pad($paymentDate, 2, "0", STR_PAD_LEFT);
-            }                                  
-            return $year . $nextMonth . $paymentDate;
+        // If it's December AND currentDay is later than the payment date
+        if (($currentMonth === "12") && ((int)$currentDay > $day)) {            
+            $month = "01"; // Month of next payment is January            
+            $year = (int)$currentYear + 1; // Increase year by 1
         }
-        // when currentDay is earlier than payment date
+        // Else if currentDay is later than payment date (but it's not December)
+        else if ((int)$currentDay > $day) {                     
+            $month = ((int)$currentMonth) + 1; // Increase month by 1   
+            $year = $currentYear;
+        }        
+        // Else, currentDay is before payment date, and it's not December
         else {
-            return $currentYearMonth . $paymentDate; 
-        }          
+            $month = $currentMonth;
+            $year = $currentYear;
+        }
+        
+        // Cast $day to string
+        $day = strval($day);
+
+        // Add 0 padding to single character $day and $month
+        if (strlen($day) === 1) {
+            $day = "0" . $day;  
+        }
+        if (strlen($month) === 1) {
+            $month = "0" .$month;
+        }               
+
+        return $year . $month . $day;         
     }
 }
