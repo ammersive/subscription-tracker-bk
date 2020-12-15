@@ -28,7 +28,9 @@ class SubscriptionRequest extends FormRequest
             "cost" => ["required", "decimal"],
             "start" => ["required", "bigint"],
             "payment_date" => ["required", "int"],
-            "notice_period" => ["required", "int"]
+            "notice_period" => ["required", "int"],
+            "categories" => ["required", "array"], // check c is an array
+            "categories.*" => ["string", "max:30"], // check members of c are strings
         ];
     }
 }

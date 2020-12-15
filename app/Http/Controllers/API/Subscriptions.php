@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Subscription;
 use App\Http\Requests\API\SubscriptionRequest;
 use App\Http\Resources\API\SubscriptionResource;
+use App\Http\Resources\API\SubscriptionPayDateResource;
 
 
 class Subscriptions extends Controller
@@ -18,8 +19,8 @@ class Subscriptions extends Controller
      */
     public function index()
     {
-        // return Subscription::all();  
-        return SubscriptionResource::collection(Subscription::all());  
+        // return Subscription::all(); 
+        return SubscriptionPayDateResource::collection(Subscription::all());  
     }   
 
     /**
@@ -28,9 +29,13 @@ class Subscriptions extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request, Subscription $subscription)
+    {        
+        $data = $request->all(); 
+        $subscription = new Subscription($data);
+        $subscription->save(); 
+        $subscription->setCategories($request->get("categories"));
+        return new SubscriptionResource($subscription);
     }
 
     /**
@@ -41,8 +46,7 @@ class Subscriptions extends Controller
      */
     public function show(Subscription $subscription)
     {
-        return new SubscriptionResource($subscription);
-        
+        return new SubscriptionPayDateResource($subscription);        
     }
 
     /**
@@ -52,9 +56,12 @@ class Subscriptions extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Subscription $subscription)
     {
-        //
+        $data = $request->all();
+        $subscription->fill($data)->save();        
+        $subscription->setCategories($request->get("categories"));
+        return new SubscriptionResource($subscription);
     }
 
     /**
@@ -63,8 +70,9 @@ class Subscriptions extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Subscription $subscription)
     {
-        //
+        $subscription->delete();
+        return response(null, 204);
     }
 }

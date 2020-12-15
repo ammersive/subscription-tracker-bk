@@ -18,7 +18,8 @@ class Category extends Model
         return $this->belongsToMany(Subscription::class);
     }
 
-    public static function fromStrings(array $strings) : Collection {
+    public static function fromStrings(array $strings)  
+    {
         return collect($strings)->map(fn($str) => trim($str))
                         ->unique()
                         ->map(fn($str) => Category::firstOrCreate(["category_name" => $str]));

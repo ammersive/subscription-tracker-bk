@@ -9,7 +9,7 @@ use App\Models\Category;
 class Subscription extends Model
 {
     use HasFactory;
-   
+    
     protected $fillable = ["subscription_name", "cost", "start", "payment_date", "notice_period"];
 
     public function categories() {
