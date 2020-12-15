@@ -20,9 +20,9 @@ class SubscriptionResource extends JsonResource
             "subscription_name" => $this->subscription_name,
             "cost" => $this->cost,
             "start" => $this->start,
-            // "payment_date" => $this->payment_date,
             "payment_date" => $this->paymentDaysToDate(),
-            "notice_period" => $this->notice_period
+            "notice_period" => $this->notice_period,
+            "categories" => $this->categories->pluck('category_name')
         ];    
     }
 }

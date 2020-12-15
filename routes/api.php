@@ -21,7 +21,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/subscriptions', [Subscriptions::class, "index"]);
+Route::post('/subscriptions', [Subscriptions::class, "store"]);
 
 Route::get('/subscriptions/{subscription}', [Subscriptions::class, "show"]);
+Route::put('/subscriptions/{subscription}', [Subscriptions::class, "update"]);
+Route::delete('/subscriptions/{subscription}', [Subscriptions::class, "destroy"]);
 
-//

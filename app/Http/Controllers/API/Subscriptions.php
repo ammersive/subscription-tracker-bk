@@ -18,7 +18,7 @@ class Subscriptions extends Controller
      */
     public function index()
     {
-        // return Subscription::all();  
+        // return Subscription::all(); 
         return SubscriptionResource::collection(Subscription::all());  
     }   
 
@@ -28,9 +28,16 @@ class Subscriptions extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Subscription $subscription)
     {
-        //
+        // $data = $request->all();
+        // $subscription = Subscription::create($data);
+        // return new SubscriptionResource($subscription);
+        $data = $request->all(); 
+        $subscription = new Subscription($data); // ** create new animal IN MEMORY (not yet in db)
+        $subscription->save(); // only now, after associating owner, save to the database
+        $subscription->setCategories($request->get("categories")); //  call set treatments method on what is now a database entry
+        return new SubscriptionResource($subscription);
     }
 
     /**
@@ -41,8 +48,7 @@ class Subscriptions extends Controller
      */
     public function show(Subscription $subscription)
     {
-        return new SubscriptionResource($subscription);
-        
+        return new SubscriptionResource($subscription);        
     }
 
     /**
@@ -52,9 +58,12 @@ class Subscriptions extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Subscription $subscription)
     {
-        //
+        $data = $request->all();
+        $subscription->fill($data)->save();        
+        $subscription->setCategories($request->get("categories"));
+        return new SubscriptionResource($subscription);
     }
 
     /**
@@ -63,8 +72,9 @@ class Subscriptions extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Subscription $subscription)
     {
-        //
+        $subscription->delete();
+        return response(null, 204);
     }
 }
