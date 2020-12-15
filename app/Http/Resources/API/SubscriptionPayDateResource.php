@@ -4,7 +4,7 @@ namespace App\Http\Resources\API;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class SubscriptionResource extends JsonResource
+class SubscriptionPayDateResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,15 +14,14 @@ class SubscriptionResource extends JsonResource
      */
     public function toArray($request)
     {
-        // return parent::toArray($request);
         return [
             "id" => $this->id,
             "subscription_name" => $this->subscription_name,
             "cost" => $this->cost,
             "start" => $this->start,
-            "payment_date" => $this->payment_date,
+            "payment_date" => $this->paymentDaysToDate(),
             "notice_period" => $this->notice_period,
             "categories" => $this->categories->pluck('category_name')
-        ];    
+        ]; 
     }
 }

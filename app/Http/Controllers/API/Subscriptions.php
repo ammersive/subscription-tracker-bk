@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Subscription;
 use App\Http\Requests\API\SubscriptionRequest;
 use App\Http\Resources\API\SubscriptionResource;
+use App\Http\Resources\API\SubscriptionPayDateResource;
 
 
 class Subscriptions extends Controller
@@ -19,7 +20,7 @@ class Subscriptions extends Controller
     public function index()
     {
         // return Subscription::all(); 
-        return SubscriptionResource::collection(Subscription::all());  
+        return SubscriptionPayDateResource::collection(Subscription::all());  
     }   
 
     /**
@@ -29,14 +30,11 @@ class Subscriptions extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, Subscription $subscription)
-    {
-        // $data = $request->all();
-        // $subscription = Subscription::create($data);
-        // return new SubscriptionResource($subscription);
+    {        
         $data = $request->all(); 
-        $subscription = new Subscription($data); // ** create new animal IN MEMORY (not yet in db)
-        $subscription->save(); // only now, after associating owner, save to the database
-        $subscription->setCategories($request->get("categories")); //  call set treatments method on what is now a database entry
+        $subscription = new Subscription($data);
+        $subscription->save(); 
+        $subscription->setCategories($request->get("categories"));
         return new SubscriptionResource($subscription);
     }
 
@@ -48,7 +46,7 @@ class Subscriptions extends Controller
      */
     public function show(Subscription $subscription)
     {
-        return new SubscriptionResource($subscription);        
+        return new SubscriptionPayDateResource($subscription);        
     }
 
     /**
