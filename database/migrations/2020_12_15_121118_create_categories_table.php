@@ -15,11 +15,11 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create("categories", function (Blueprint $table) {
             $table->id();
-            $table->string("category_name", 50);
+            $table->string("category_name", 50)->default("");
         });
 
         //pivot table
-        Schema::create("subscription_category", function (Blueprint $table) {
+        Schema::create("category_subscription", function (Blueprint $table) {
             // still have an id column
             $table->id();
             // create the article id column and foreign key
@@ -41,7 +41,7 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {   
-        Schema::dropIfExists('subscription_category');
+        Schema::dropIfExists('category_subscription');
         Schema::dropIfExists('categories');
     }
 }
