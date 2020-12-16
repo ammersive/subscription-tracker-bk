@@ -66,7 +66,7 @@
 </ul>
 
 <h3>DELETE a subscriptions</h3>
-<code>DELETE /api/subscriptions</code>
+<code>DELETE /api/subscriptions/id</code>
 <br>
 <h1>Version 1.2</h1>
 <h3>In this instance of the app we would like to allow the user to filter through their subscriptions using a Categories table via Laravel that is already created with it's end-points.</h3>
