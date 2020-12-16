@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Models\Subscription;
 use App\Http\Requests\API\SubscriptionRequest;
 use App\Http\Resources\API\SubscriptionResource;
-use App\Http\Resources\API\SubscriptionPayDateResource;
 
 
 class Subscriptions extends Controller
@@ -20,7 +19,7 @@ class Subscriptions extends Controller
     public function index()
     {
         // return Subscription::all(); 
-        return SubscriptionPayDateResource::collection(Subscription::all());  
+        return SubscriptionResource::collection(Subscription::all());  
     }   
 
     /**
@@ -46,7 +45,7 @@ class Subscriptions extends Controller
      */
     public function show(Subscription $subscription)
     {
-        return new SubscriptionPayDateResource($subscription);        
+        return new SubscriptionResource($subscription);        
     }
 
     /**
