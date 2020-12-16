@@ -1,62 +1,79 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<h1> Restful API: Subscription Tracker</h1>
+<h3>This is the API for the Subscription Tracker App.</h3> <br>
+<h3>Version 1.1.1</h3>
+<h4>This API is based on a MVP version  of the app. The app is currently a single use instance where a  user can view their subscriptions, be able to request full details of their subscriptions, add a new subscription, edit and delete an existing subscription.</h4><br>
+<ul>
+<li>Restful API: Subscription Tracker</a></li>
+<li>Subscriptions</a>
+<ul>
+<li>GET all subscriptions</a></li>
+<li>POST a new subscription</li>
+<li>PUT an existing subscription in full</li>
+<li>PATCH parts of an existing subscription</li>
+<li>DELETE a subscription</li>
+</ul>
+</li>
+<h3>Version  1.2</h3>
+<h4>Users are able to filter their subscriptions</h4>
+<h4>This will use these requests</h4>
+<li>Categories</li>
+<ul>
+<li>GET all categories</li>
+<li>GET a specific subscription that is grouped with the same category</li>
+</ul>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<h1> Subscriptions  </h1>
+<h3>GET all subscriptions</h3>
+<p>To get all the subscriptions available, use:</p>
+<code>GET /api/subscriptions</code>
 
-## About Laravel
+<h3>POST a subscription</h3>
+<code>POST /api/subscriptions</code> <br>
+<strong>Request</strong>
+<ul>
+    <li>subscription_name</li>
+    <li>cost</li>
+    <li>start</li>
+    <li>payment_date</li>
+    <li>notice_period</li>
+</ul>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<h3>GET a subscription with given id</h3>
+<code>DELETE /api/subscriptions/id</code>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<h3>"EDIT" a subscription</h3>
+<code>PUT /api/subscriptions/id</code>
+<p>This will update an entire subscription<p>
+<strong>Request</strong>
+<ul>
+    <li>subscription_name</li>
+    <li>cost</li>
+    <li>start</li>
+    <li>payment_date</li>
+    <li>notice_period</li>
+</ul>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+<h3>"EDIT" part of a subscription</h3>
+<code>PATCH /api/subscriptions/id</code>
+<p>This will update an entire subscription<p>
+<strong>Request</strong>
+<ul>
+    <li>subscription_name</li>
+    <li>cost</li>
+    <li>start</li>
+    <li>payment_date</li>
+    <li>notice_period</li>
+</ul>
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<h3>DELETE a subscriptions</h3>
+<code>DELETE /api/subscriptions</code>
+<br>
+<h1>Version 1.2</h1>
+<h3>In this instance of the app we would like to allow the user to filter through their subscriptions using a Categories table via Laravel that is already created with it's end-points.</h3>
+<br>
+<h1>Version 2.0</h1>
+<h3>In this instance of the app we would like to create API end points to co-inside with the front-end where a user is able to input their subscription details with a POST request, be stored and allow the user to view with a GET request that is already set up.</h3> <br>
+<h1>Version 3.0</h1>
+<h3> In this instance of the app we would like to have multiple users, make use of passports and authentication in Laravel, create a log-in system and be able to add a notification feature that gets sent to the user's email address</h3>
+<br>
+<p>Documents written by Tumeka (TumekaB) and Sophie (ammersive).</p>
