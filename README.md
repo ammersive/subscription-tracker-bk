@@ -1,3 +1,12 @@
+<h3>The API powering...</h3>
+<br>
+<h1> My Subscription</h1>
+<h3>The [subscription management app](https://bpdm88.github.io/subscriptions-app/).</h3>
+<h4>My Subscription lets you view, arrange and manage your subscriptions (e.g. gym membership, entertainment, and news services). Each card contains key information about the subscription, including the monthly cost, spend so far, days remaining to cancel, and categories that the subscription belongs to. The traffic light indicator reflects how much time is left until a payment is due. The user can add, edit and delete subscriptions, as well as being able to sort subscriptions by their cancellation date, and by category. 
+<br>
+Built by Tumeka Burston, Benjamin Main, Jacques Coetzee and Sophie Stammers.</h4>
+<br>
+
 <h1> Restful API: Subscription Tracker</h1>
 <h3>This is the API for the Subscription Tracker App.</h3> <br>
 <h3>Version 1.1.1</h3>
